@@ -40,4 +40,6 @@ The script produces a combined figure saved as `sensor_analysis.png` that contai
 
 ## AI tools used and disclosure
 
-This section is a placeholder for information about any AI tools used during the project and any related disclosure details. Please fill in the details as needed.
+I used Copilot to generate code based on prompts that I then checked and ran to make sure it creates
+an acceptable `sensor_analysis.png` with the three required graphs in both the python code and
+Jupyter notebook.
