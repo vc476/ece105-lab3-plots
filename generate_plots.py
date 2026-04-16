@@ -166,10 +166,32 @@ def main():
     """
     sensor_a, sensor_b, timestamps = generate_data(seed=6411)
 
-    fig, axes = plt.subplots(nrows=1, ncols=3, figsize=(18, 5))
+    fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(18, 12))
+    axes = axes.flatten()
+
     plot_scatter(sensor_a, sensor_b, timestamps, axes[0])
     plot_histogram(sensor_a, sensor_b, timestamps, axes[1])
     plot_boxplot(sensor_a, sensor_b, timestamps, axes[2])
+
+    overall_mean = np.mean(np.concatenate([sensor_a, sensor_b]))
+    stats_text = (
+        f"Sensor A mean: {sensor_a.mean():.2f} °C\n"
+        f"Sensor B mean: {sensor_b.mean():.2f} °C\n"
+        f"Overall mean: {overall_mean:.2f} °C\n"
+        f"Sensor A std: {sensor_a.std(ddof=1):.2f} °C\n"
+        f"Sensor B std: {sensor_b.std(ddof=1):.2f} °C"
+    )
+    axes[3].text(
+        0.02,
+        0.98,
+        stats_text,
+        va="top",
+        ha="left",
+        fontsize=12,
+        family="monospace",
+    )
+    axes[3].set_title("Summary Statistics")
+    axes[3].set_axis_off()
 
     plt.tight_layout()
     fig.savefig("sensor_analysis.png", dpi=150, bbox_inches="tight")
